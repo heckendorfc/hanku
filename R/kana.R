@@ -1,32 +1,5 @@
 library(ggplot2)
 
-romaji <- function(){
-	rv <- c("a","i","u","e","o")
-	rc <- c("k","s","t","n","h","m","y","r")
-	rtwo <- sapply(rc,paste,rv,sep="")
-	ro <- c(rv,rtwo,"wa","wo","n")
-	ro[which(ro=="si")] <- "shi"
-	ro[which(ro=="ti")] <- "chi"
-	ro[which(ro=="tu")] <- "tsu"
-	ro[which(ro=="hu")] <- "fu"
-	ro[-which(ro=="yi" | ro=="ye")]
-}
-
-hiragana <- function(){
-	hi <- c("あ","い","う","え","お",
-			"か","き","く","け","こ",
-			"さ","し","す","せ","そ",
-			"た","ち","つ","て","と",
-			"な","に","ぬ","ね","の",
-			"は","ひ","ふ","へ","ほ",
-			"ま","み","む","め","も",
-			"や",     "ゆ",     "よ",
-			"ら","り","る","れ","ろ",
-			"わ",               "を",
-			"ん")
-	hi
-}
-
 kanagrid <- function(){
 	gr <- data.frame(x=c(sapply(11:5,FUN=function(x)rep(x,5)),rep(4,3),rep(3,5),2,2,1),
 					 y=c(rep(5:1,7),5,3,1,5:1,5,1,5))
@@ -63,8 +36,8 @@ kanasample <- function(ro,kana,size,reduce,exclude){
 }
 
 trial.hiragana <- function(time=30,reduce=NULL,exclude=NULL){
-	ro <- romaji()
-	hi <- hiragana()
+	ro <- romaji
+	hi <- hiragana
 
 	res <- NULL
 
@@ -116,9 +89,6 @@ trial.hiragana <- function(time=30,reduce=NULL,exclude=NULL){
 }
 
 plot.trial <- function(df){
-	#class(res$errors) <- "logical"
-	#res$errors <- res$errors+jj
-
 	mt <- mean(df$time[which(df$time>0)])
 	title <- paste("Kana trial. Mean character time (s):",mt,sep="",collapse="")
 
@@ -129,8 +99,8 @@ plot.trial <- function(df){
 }
 
 flash.hiragana <- function(size=10,reduce=NULL,exclude=NULL){
-	ro <- romaji()
-	hi <- hiragana()
+	ro <- romaji
+	hi <- hiragana
 
 	i <- kanasample(ro,hi,size,reduce,exclude)
 
