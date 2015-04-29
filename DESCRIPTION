@@ -6,6 +6,8 @@ Date: 2015-04-27
 Author: Christian Heckendorf (heckendorfc@gmail.com)
 Maintainer: Christian Heckendorf <heckendorfc@gmail.com>
 Description: This package provides functions to assist with learning hiragana and katakana. This includes options to highlight both speed and accuracy.
-Depends: ggplot2
+Imports: ggplot2
 License: BSD 2-clause License + file LICENSE
-LazyData: true
+LazyData: yes
+ByteCompile: yes
+NeedsCompilation: yes

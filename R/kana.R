@@ -1,11 +1,26 @@
-library(ggplot2)
-
+#' kanagrid
+#' 
+#' @export
 kanagrid <- function(){
 	gr <- data.frame(x=c(sapply(11:5,FUN=function(x)rep(x,5)),rep(4,3),rep(3,5),2,2,1),
 					 y=c(rep(5:1,7),5,3,1,5:1,5,1,5))
 	gr
 }
 
+#' kanasample
+#' 
+#' @param ro
+#' TODO
+#' @param kana
+#' TODO
+#' @param size
+#' TODO
+#' @param reduce
+#' TODO
+#' @param exclude
+#' TODO
+#' 
+#' @export
 kanasample <- function(ro,kana,size,reduce,exclude){
 	if(length(kana)!=length(ro)){
 		stop("length mismatch")
@@ -35,6 +50,16 @@ kanasample <- function(ro,kana,size,reduce,exclude){
 	return(i)
 }
 
+#' trial.hiragana
+#' 
+#' @param time
+#' TODO
+#' @param reduce
+#' TODO
+#' @param exclude
+#' TODO
+#' 
+#' @export
 trial.hiragana <- function(time=30,reduce=NULL,exclude=NULL){
 	ro <- romaji
 	hi <- hiragana
@@ -88,16 +113,29 @@ trial.hiragana <- function(time=30,reduce=NULL,exclude=NULL){
 	return(df)
 }
 
-plot.trial <- function(df){
-	mt <- mean(df$time[which(df$time>0)])
+#' @export
+plot.trial <- function(x, ...){
+	y <- errors <- kana <- NULL;rm(y, errors, kana)
+	
+	mt <- mean(x$time[which(x$time>0)])
 	title <- paste("Kana trial. Mean character time (s):",mt,sep="",collapse="")
 
-	ggplot(data=df,aes(x=x,y=y))+
+	ggplot(data=x,aes(x=x,y=y))+
 	geom_tile(aes(fill=time),color="white") + scale_fill_gradient(low = "white",high = "orange") +
 	geom_text(aes(label=kana,size=errors)) + scale_size(range=c(4,8)) +
 	labs(title = title)
 }
 
+#' flash.hiragana
+#' 
+#' @param size
+#' TODO
+#' @param reduce
+#' TODO
+#' @param exclude
+#' TODO
+#' 
+#' @export
 flash.hiragana <- function(size=10,reduce=NULL,exclude=NULL){
 	ro <- romaji
 	hi <- hiragana
