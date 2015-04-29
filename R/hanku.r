@@ -4,9 +4,9 @@
 #'
 #' @import ggplot2
 #' 
-#' @name lineSampler
+#' @name hanku
 #' @docType package
-#' @title File Line Sampler
-#' @author Drew Schmidt \email{wrathematics@@gmail.com}
+#' @title Japanese kana learning utilities
+#' @author Christian Heckendorf \email{heckendorfc@@gmail.com}
 #' @keywords package
 NULL
