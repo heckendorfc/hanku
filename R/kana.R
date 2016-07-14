@@ -203,6 +203,7 @@ flash.kana <- function(size=10,romaji=NULL,kana=NULL,reduce=NULL,exclude=NULL){
 	te <- readLines(si,1)
 	close(si)
 	te <- unlist(strsplit(te," "))
+	te <- te[which(nchar(te)>0)]
 
 	ans <- te!=romaji[i]
 	if(length(which(ans))>0){
@@ -243,7 +244,7 @@ flash.hiragana <- function(size=10,reduce=NULL,exclude=NULL){
 #' 
 #' @export
 flash.katakana <- function(size=10,reduce=NULL,exclude=NULL){
-	ro <- romaji
-	ka <- katakana
+	ro <- romaji[-(length(romaji)-1)]
+	ka <- katakana[-(length(katakana)-1)]
 	flash.kana(size=size,romaji=ro,kana=ka,reduce=reduce,exclude=exclude)
 }
